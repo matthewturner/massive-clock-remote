@@ -25,7 +25,7 @@ void setup()
 
   attachInterrupt(digitalPinToInterrupt(SHOW_PIN), wakeup, LOW);
 
-  Serial.println("Setup complete. Continuing...");
+  Serial.println(F("Setup complete. Continuing..."));
 }
 
 void loop()
@@ -43,7 +43,7 @@ void wakeup()
 
 bool sleep()
 {
-  Serial.println("Sleeping...");
+  Serial.println(F("Sleeping..."));
   Serial.flush();
   LowPower.idle(SLEEP_8S, ADC_OFF, TIMER2_OFF, TIMER1_OFF, TIMER0_OFF,
                 SPI_OFF, USART0_OFF, TWI_OFF);
@@ -52,17 +52,17 @@ bool sleep()
 
 void setState(byte newState)
 {
-  Serial.print("Setting state: ");
+  Serial.print(F("Setting state: "));
   switch (newState)
   {
   case PENDING:
-    Serial.println("PENDING");
+    Serial.println(F("PENDING"));
     break;
   case IN_PROGRESS:
-    Serial.println("IN_PROGRESS");
+    Serial.println(F("IN_PROGRESS"));
     break;
   case IDLE:
-    Serial.println("IDLE");
+    Serial.println(F("IDLE"));
     break;
   }
   state = newState;
@@ -70,10 +70,10 @@ void setState(byte newState)
 
 bool showTemporarily()
 {
-  Serial.println("Showing temporarily...");
+  Serial.println(F("Showing temporarily..."));
   setState(IN_PROGRESS);
 
-  bluetoothSerial.println(">show!");
+  bluetoothSerial.println(F(">show!"));
 
   returnToNormalListener->enable();
 
@@ -82,7 +82,7 @@ bool showTemporarily()
 
 bool returnToNormal()
 {
-  Serial.println("Returning to normal...");
+  Serial.println(F("Returning to normal..."));
   returnToNormalListener->disable();
 
   setState(IDLE);
