@@ -6,7 +6,7 @@ void setup()
 
   pinMode(RECEIVE_PIN, INPUT);
   pinMode(TRANSMIT_PIN, OUTPUT);
-  bluetoothSerial.begin(115200);
+  bluetoothSerial.begin(9600);
 
   pinMode(SHOW_PIN, INPUT_PULLUP);
 
